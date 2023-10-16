@@ -36,7 +36,6 @@ function MovieList() {
   const [movie, setMovie] = useState<MovieData | null>(null);
 
   useEffect(() => {
-    //https://api.themoviedb.org/3/movie/550?api_key=0ed9e5583ee0385087dff929f46a1b21
     axios.get(`${apiUrl}?api_key=${apiKey}`)
       .then((response) => {
         setMovie(response.data);
@@ -44,7 +43,7 @@ function MovieList() {
       .catch((error) => {
         console.error('Error fetching movie data:', error);
       });
-  }, []);
+  }, [apiKey, movie]);
 
   if (!movie) {
     return <p>Loading...</p>;
