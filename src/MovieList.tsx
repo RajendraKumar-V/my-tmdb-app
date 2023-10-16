@@ -3,10 +3,6 @@ import axios from "axios";
 import "./App.css";
 
 function MovieList() {
-  //const apiKey = '0ed9e5583ee0385087dff929f46a1b21';
-  const apiKey = process.env.REACT_APP_TMDB_API_KEY;
-  const apiUrl = "https://api.themoviedb.org/3/movie/550";
-
   interface MovieData {
     adult: boolean;
     backdrop_path: string;
@@ -35,11 +31,13 @@ function MovieList() {
     vote_count: number;
   }
 
+  const apiKey = process.env.REACT_APP_API_KEY || '0ed9e5583ee0385087dff929f46a1b21';
+  const apiUrl = "https://api.themoviedb.org/3/movie/550";
   const [movie, setMovie] = useState<MovieData | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('https://api.themoviedb.org/3/movie/550?api_key=0ed9e5583ee0385087dff929f46a1b21')
+    //https://api.themoviedb.org/3/movie/550?api_key=0ed9e5583ee0385087dff929f46a1b21
+    axios.get(`${apiUrl}?api_key=${apiKey}`)
       .then((response) => {
         setMovie(response.data);
       })
