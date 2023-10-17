@@ -3,6 +3,7 @@ import ErrorBoundary from './Components/ErrorBoundary';
 import useMovieData from './CustomHooks/useMovieData';
 import MovieList from './Components/MovieList';
 import TabNavigation from './Components/TabNavigation';
+import './App.css'; 
 
 function App() {
   const [activeTab, setActiveTab] = useState('movies');
