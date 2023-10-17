@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import "./App.css";
-import { MovieData } from './type';
+import { MovieData } from '../type';
 
 const MovieList:FC<{ movieData: MovieData | null }> = ({ movieData }) => {
   if (!movieData) {
