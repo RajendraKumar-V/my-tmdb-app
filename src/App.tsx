@@ -9,7 +9,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('movies');
   const movieId = activeTab === 'movies' ? 550 : 12345; // Specify movie IDs for movies and series
   const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}`;
-  const { movie, loading, error } = useMovieData(apiUrl,movieId);
+  const { movie, loading, error } = useMovieData(apiUrl);
   
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
