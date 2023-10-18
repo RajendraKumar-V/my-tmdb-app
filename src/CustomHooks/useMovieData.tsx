@@ -12,7 +12,7 @@ const useMovieData = (apiUrl: string, initialData: MovieData | null = null) => {
   useEffect(() => {
     axios
       .get(`${apiUrl}?api_key=${apiKey}`)
-      .then((response: AxiosResponse<MovieData>) => { // Use AxiosResponse to specify the response type
+      .then((response: AxiosResponse<MovieData>) => { 
         setMovie(response.data);
         setLoading(false);
       })

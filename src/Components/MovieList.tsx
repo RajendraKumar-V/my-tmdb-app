@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import "./MovieCard.css";
 import { MovieData } from "../type";
 interface MovieListProps {
-  movieData: any; // Replace 'any' with the correct type if available
+  movieData: any;
 }
 
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
