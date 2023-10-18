@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   const [activeTab, setActiveTab] = useState('movies');
   const movieId = activeTab === 'movies' ? 550 : 12345; // Specify movie IDs for movies and series
-  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}`;
+  const apiUrl = `https://api.themoviedb.org/3/movie/popular`;
   const { movie, loading, error } = useMovieData(apiUrl);
   
   const handleTabChange = (tab: string) => {
@@ -25,7 +25,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Movie List</h1>
       <TabNavigation onTabChange={handleTabChange} />
       <ErrorBoundary>
         <MovieList movieData={movie} />

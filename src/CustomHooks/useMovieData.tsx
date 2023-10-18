@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { MovieData } from '../type';
+import axios, { AxiosResponse } from 'axios'; 
+import { MovieData } from "../type";
 
 const useMovieData = (apiUrl: string, initialData: MovieData | null = null) => {
   const apiKey = process.env.REACT_APP_API_KEY || '0ed9e5583ee0385087dff929f46a1b21';
@@ -12,7 +12,7 @@ const useMovieData = (apiUrl: string, initialData: MovieData | null = null) => {
   useEffect(() => {
     axios
       .get(`${apiUrl}?api_key=${apiKey}`)
-      .then((response) => {
+      .then((response: AxiosResponse<MovieData>) => { // Use AxiosResponse to specify the response type
         setMovie(response.data);
         setLoading(false);
       })
