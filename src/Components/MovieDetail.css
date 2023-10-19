@@ -1,16 +1,33 @@
 .movie-details-container {
     background-color: #1a1a1a; /* Dark background color */
+    display: flex;
+    flex-wrap: wrap;
   }
+
+   .movie-card {
+    border: 1px solid #ddd;
+    padding: 5px;
+    box-shadow: 0px 0px 1px 0px #aaa;
+    margin:5px;
+    width: 200px; 
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+
 
   .movie-title {
     font-size: 24px; /* Adjust font size */
+  }
+  .movie-release{
+    font-size: 24px; /* Adjust font size */
     color: #fff; /* Text color */
-    margin: 10px 0; /* Margins around the title */
   }
   
   .movie-tagline {
     font-size: 18px; /* Adjust font size */
-    color: #999; /* Text color for tagline */
+    color: white; /* Text color for tagline */
     margin: 5px 0; /* Margins for tagline */
   }
 
@@ -27,13 +44,13 @@
   }
   
   .movie-title {
-    margin-top: 20px; /* Top margin for the title */
+    padding: 20px; /* Padding around the container */
+
   }
   .movie-rating {
     font-size: 18px; /* Font size for rating */
     color: #ffcc33; /* Custom color for rating */
   }
- movie-release,
 .movie-runtime,
 .movie-genres {
   font-size: 16px; /* Font size for additional information */
