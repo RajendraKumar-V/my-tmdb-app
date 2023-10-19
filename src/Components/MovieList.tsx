@@ -11,7 +11,6 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
   }
 
   const movies = movieData.results;
-  console.log(movies);
 
   return (
     <div className="movie-list">

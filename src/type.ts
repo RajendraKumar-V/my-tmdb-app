@@ -1,7 +1,7 @@
 export type MovieData = {
     adult: boolean;
     backdrop_path: string;
-    belongs_to_collection: any; // Define a more specific type if available
+    belongs_to_collection: any; 
     budget: number;
     genres: { id: number; name: string }[];
     homepage: string;
