@@ -12,8 +12,6 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
   }
 
   const movies = movieData.results;
-
-  //const sanitizedTitle = movies.title.replace(/[: -]/g, "_");
   return (
     <div className="movie-list">
       {movies.map((movie: MovieData) => (

@@ -1,5 +1,5 @@
 .movie-details-container {
-    background-color: #1a1a1a; /* Dark background color */
+    background-color: #1a1a1a;
     display: flex;
     flex-wrap: wrap;
   }
@@ -18,50 +18,50 @@
 
 
   .movie-title {
-    font-size: 18px; /* Adjust the font size to match the TMDB design */
-    color: #fff; /* Text color */
-    margin: 30px; /* Margins for tagline */
+    font-size: 18px;
+    color: #fff; 
+    margin: 30px; 
   }
   .movie-release{
-    font-size: 18px; /* Adjust font size */
-    color: #fff; /* Text color */
+    font-size: 18px;
+    color: #fff; 
     margin: 30px;
   }
   
   .movie-tagline {
-    font-size: 18px; /* Adjust font size */
-    color: white; /* Text color for tagline */
-    margin: 30px; /* Margins for tagline */
+    font-size: 18px; 
+    color: white; 
+    margin: 30px;
   }
 
   .movie-poster {
-    max-width: 100%; /* Ensure the image doesn't exceed the container */
-    border-radius: 10px; /* Rounded corners */
+    max-width: 100%; 
+    border-radius: 10px; 
   }
   .movie-details {
-    line-height: 1.4; /* Adjust line height for text */
-    text-shadow: 1px 1px 2px #000; /* Text shadow for better visibility */
+    line-height: 1.4; 
+    text-shadow: 1px 1px 2px #000; 
   }
   .movie-details-container {
-    padding: 20px; /* Padding around the container */
+    padding: 20px;
   }
   
   .movie-title {
-    padding: 20px; /* Padding around the container */
+    padding: 20px;
 
   }
   .movie-rating {
-    font-size: 18px; /* Font size for rating */
-    color: #ffcc33; /* Custom color for rating */
+    font-size: 18px; 
+    color: #ffcc33;
   }
 .movie-runtime,
 .movie-genres {
-  font-size: 16px; /* Font size for additional information */
-  color: #ccc; /* Text color for additional information */
-  margin: 5px 0; /* Adjust margins */
+  font-size: 16px; 
+  color: #ccc; 
+  margin: 5px 0; 
 }
 .movie-details-container {
-    width: 100%; /* Adjust the width as needed */
+    width: 100%;
  /* Center the container horizontally */
   }
  
