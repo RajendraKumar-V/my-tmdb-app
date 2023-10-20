@@ -18,17 +18,20 @@
 
 
   .movie-title {
-    font-size: 24px; /* Adjust font size */
+    font-size: 18px; /* Adjust the font size to match the TMDB design */
+    color: #fff; /* Text color */
+    margin: 30px; /* Margins for tagline */
   }
   .movie-release{
-    font-size: 24px; /* Adjust font size */
+    font-size: 18px; /* Adjust font size */
     color: #fff; /* Text color */
+    margin: 30px;
   }
   
   .movie-tagline {
     font-size: 18px; /* Adjust font size */
     color: white; /* Text color for tagline */
-    margin: 5px 0; /* Margins for tagline */
+    margin: 30px; /* Margins for tagline */
   }
 
   .movie-poster {

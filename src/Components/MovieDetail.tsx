@@ -32,6 +32,11 @@ function MovieDetail() {
       </div>
       <div>
         <p className="movie-title">{movieDetails.title}</p>
+        <p className="movie-tagline">{movieDetails.tagline}</p>
+        <p className="movie-release">
+          Release Date: {movieDetails.release_date}
+        </p>
+        <p className="movie-runtime">Runtime: {movieDetails.runtime} minutes</p>
       </div>
     </div>
   );
