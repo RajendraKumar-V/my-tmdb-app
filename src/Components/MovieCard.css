@@ -1,23 +1,29 @@
 .movie-list {
-  margin-top: 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+.movie-card {
+  border: 1px solid #ddd;
+  padding: 5px;
+  box-shadow: 0px 0px 1px 0px #aaa;
+  margin: 5px;
+  width: 70px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+}
   
-  .movie-card {
-    border: 1px solid #ddd;
-    padding: 5px;
-    box-shadow: 0px 0px 1px 0px #aaa;
-    margin: 5px;
-    width: 150px;
-    height: 250px;
-    display: block;
-    margin-top: 30px;
-  }
-  
-  .movie-poster {
-    width: 100%; /* Adjust this to control the width of the poster */
-    height: auto; /* This maintains the image's aspect ratio */
-    border-radius: 0px 0 0 0px;
-  }
+.movie-card .movie-poster {
+  width: 70%; 
+  height: auto;
+  border-radius: 0px 0 0 0px;
+}
   
   .movie-details {
     padding: 10px;

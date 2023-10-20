@@ -47,7 +47,8 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
           <button
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            className={index + 1 === currentPage ? "active" : ""}>
+            className={index + 1 === currentPage ? "active" : ""}
+          >
             {index + 1}
           </button>
         ))}
