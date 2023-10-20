@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { MovieData } from "../type";
 import "./MovieDetail.css";
 import Modal from "react-modal";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -15,7 +15,7 @@ function MovieDetail() {
   const apiKey =
     process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => response.json())
@@ -33,9 +33,7 @@ function MovieDetail() {
 
   const closeModal = () => {
     setModalIsOpen(false);
-    <Routes>
-      <Route path="/" element={<Navigate replace to="/movie-list" />} />
-    </Routes>;
+    navigate("/");
   };
 
   return (
@@ -48,24 +46,25 @@ function MovieDetail() {
         overlayClassName="overlay"
       >
         <div className="modal-content">
-          {/* Place the movie details content here */}
           <img
             src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
             alt={movieDetails.title}
-            className="modal-poster"
+            className="modal-image"
           />
+        </div>
+        <div className="divModalDetails">
           <p className="modal-title">{movieDetails.title}</p>
-          <p className="modal-tagline">{movieDetails.tagline}</p>
+          <p className="modal-description">{movieDetails.tagline}</p>
           <p className="modal-release">
             Release Date: {movieDetails.release_date}
           </p>
           <p className="modal-runtime">
             Runtime: {movieDetails.runtime} minutes
           </p>
-          {/* You can style this modal content as per your requirements */}
         </div>
-        <button onClick={closeModal}>
-          <img src="close-button-image.jpg" alt="Close" />
+
+        <button onClick={closeModal} className="close-button">
+          Close
         </button>
       </Modal>
     </div>

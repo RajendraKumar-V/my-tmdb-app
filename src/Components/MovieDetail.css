@@ -25,7 +25,6 @@
   .modal-release{
     font-size: 18px;
     color: #fff; 
-    margin: 30px;
   }
   
   .modal-tagline {
@@ -109,13 +108,18 @@
   }
   
   .modal-image {
-    max-width: 100%;
+    max-width: 30%;
     height: auto;
     margin-bottom: 20px;
   }
+  .divModalDetails{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+  }
   
   .close-button {
-    background-color: #ff0000; /* Close button background color */
+    background-color:black; /* Close button background color */
     color: white;
     font-size: 18px;
     padding: 10px 20px;
@@ -124,6 +128,7 @@
     align-self: flex-end;
     border-radius: 5px;
   }
+
   
   .close-button:hover {
     background-color:white; /* Hover state background color */
