@@ -9,12 +9,10 @@
 }
 
 .movie-card {
-  border: 1px solid #ddd;
   padding: 5px;
-  box-shadow: 0px 0px 1px 0px #aaa;
   margin: 5px;
-  width: 70px;
-  height: 700px;
+  width: 100px;
+  height: 100px; /* Adjust this to control the height */
   display: flex;
   flex-direction: column;
 }
@@ -22,7 +20,7 @@
 .movie-card .movie-poster {
   width: 70%; 
   height: auto;
-  border-radius: 0px 0 0 0px;
+  display: flex;
 }
   
   .movie-details {
