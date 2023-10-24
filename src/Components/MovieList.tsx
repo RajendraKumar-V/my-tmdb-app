@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-//import "../custom.css"; // Import your custom CSS
+import "../custom.css"; // Import your custom CSS
 import { MovieData } from "../type";
 import { Link } from "react-router-dom";
 
@@ -29,26 +29,25 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
 
   return (
     <div>
-      <div className="movie-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="movie-list-maindiv">
         {movies.map((movie: MovieData) => (
-          <div
-            key={movie.id}
-            className="movie-card bg-white rounded-lg shadow-md"
-          >
+          <div key={movie.id}>
             <Link to={`/movie/${movie.id}`}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                className="movie-poster w-40 h-40 !important"
-              />
-              <h2 className="movie-title text-lg font-bold mt-2 px-2 py-1">
-                {movie.title}
-              </h2>
+              <div className="movie-list-imagediv">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="movie-list-image"
+                />
+                <h2 className="text-lg font-bold mt-2 px-2 py-1">
+                  {movie.title}
+                </h2>
+              </div>
             </Link>
           </div>
         ))}
       </div>
-      <div className="pagination mt-4">
+      <div>
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
@@ -57,7 +56,7 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
               index + 1 === currentPage
                 ? "bg-blue-500 text-white"
                 : "bg-gray-300"
-            }mr-2`}
+            } mr-2`}
           >
             {index + 1}
           </button>

@@ -37,36 +37,9 @@ function MovieDetail() {
   };
 
   return (
-    <div className="movie-details-container">
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Movie Detail"
-        className="modal"
-        overlayClassName="overlay"
-      >
-        <div className="modal-content">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-            alt={movieDetails.title}
-            className="modal-image"
-          />
-        </div>
-        <div className="divModalDetails">
-          <p className="modal-title">{movieDetails.title}</p>
-          <p className="modal-description">{movieDetails.tagline}</p>
-          <p className="modal-release">
-            Release Date: {movieDetails.release_date}
-          </p>
-          <p className="modal-runtime">
-            Runtime: {movieDetails.runtime} minutes
-          </p>
-        </div>
-
-        <button onClick={closeModal} className="close-button">
-          Close
-        </button>
-      </Modal>
+    <div className="div inline">
+      <div className="w-1/2 p-4 bg-blue-200">Div 1</div>
+      <div className="w-1/2 p-4 bg-green-200">Div 2</div>
     </div>
   );
 }
