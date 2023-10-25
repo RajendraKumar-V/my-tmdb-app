@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MovieData } from "../type";
-import "./MovieDetail.css";
+import "../custom.css";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 
@@ -37,9 +37,32 @@ function MovieDetail() {
   };
 
   return (
-    <div className="div inline">
-      <div className="w-1/2 p-4 bg-blue-200">Div 1</div>
-      <div className="w-1/2 p-4 bg-green-200">Div 2</div>
+    <div className="movie-details-first-div">
+      <div className="movie-details-second-div">
+        <div className="flex">
+          <div className="movie-details-image-div">
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+              alt={movieDetails.title}
+              className="movie-details-image"
+            />
+          </div>
+          <div className="movie-detail-content-div">
+            <p className="modal-title text-3xl font-extrabold mb-2 text-white">
+              {movieDetails.title}
+            </p>
+            <p className="modal-description text-lg mb-4 text-white">
+              {movieDetails.tagline}
+            </p>
+            <p className="modal-release text-lg mb-4 text-white">
+              Release Date: {movieDetails.release_date}
+            </p>
+            <p className="modal-runtime text-lg text-white">
+              Runtime: {movieDetails.runtime} minutes
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

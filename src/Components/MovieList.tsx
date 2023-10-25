@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import "../custom.css"; // Import your custom CSS
+import "../custom.css";
 import { MovieData } from "../type";
 import { Link } from "react-router-dom";
 

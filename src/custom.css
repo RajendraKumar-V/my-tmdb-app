@@ -28,3 +28,26 @@
 .movie-list-image{
   @apply w-48 h-64 object-cover
 }
+/*************************************Movie details************************************/
+.movie-details-first-div{
+  @apply fixed inset-0 flex items-center justify-center  z-50
+}
+.movie-details-second-div{
+  @apply bg-custom-color w-3/4 h-3/4 p-10 rounded-lg shadow-lg
+}
+.movie-details-main-div{
+  @apply bg-custom-color
+}
+.movie-details-image-div{
+  @apply bg-white rounded-lg shadow-md m-2
+}
+.movie-details-image{
+  @apply w-64 h-80
+}
+.movie-detail-modal{
+  @apply bg-custom-color w-3/4 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  z-index: 70;
+}
+.movie-detail-content-div{
+  @apply w-1/2 p-4 pl-4
+}
