@@ -4,6 +4,7 @@ import { MovieData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
+import closeIcon from "../image/close-icon.svg";
 
 Modal.setAppElement("#root");
 
@@ -34,9 +35,9 @@ function MovieDetail() {
   return (
     <div className="movie-details-first-div">
       <div className="movie-details-second-div">
-      <button className="close-button" onClick={handleCloseModal}>
-        Close
-      </button>
+        <button className="close-button" onClick={handleCloseModal}>
+          <img src={closeIcon} alt="Close" />
+        </button>
         <div className="flex">
           <div className="movie-details-image-div">
             <img
@@ -46,9 +47,7 @@ function MovieDetail() {
             />
           </div>
           <div className="movie-detail-content-div">
-            <p className="movie-detail-title">
-              {movieDetails.title}
-            </p>
+            <p className="movie-detail-title">{movieDetails.title}</p>
             <p className="movie-detail-release">
               Release Date: {movieDetails.release_date}
             </p>
