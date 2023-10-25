@@ -15,7 +15,7 @@ function MovieDetail() {
   const apiKey =
     process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`;
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => response.json())
@@ -29,17 +29,14 @@ function MovieDetail() {
 
   const handleCloseModal = () => {
     navigate("/");
-  }
+  };
 
   return (
     <div className="movie-details-first-div">
-          <button
-              className="close-button"
-              onClick={handleCloseModal}
-            >
-              Close
-            </button>
       <div className="movie-details-second-div">
+      <button className="close-button" onClick={handleCloseModal}>
+        Close
+      </button>
         <div className="flex">
           <div className="movie-details-image-div">
             <img
@@ -49,16 +46,16 @@ function MovieDetail() {
             />
           </div>
           <div className="movie-detail-content-div">
-            <p className="modal-title text-3xl font-extrabold  py-4 mb-2 text-white">
+            <p className="movie-detail-title">
               {movieDetails.title}
             </p>
-            <p className="modal-release text-lg mb-4 py-4 text-white">
+            <p className="movie-detail-release">
               Release Date: {movieDetails.release_date}
             </p>
-            <p className="modal-description text-lg mb-4 py-4 text-white">
+            <p className="movie-detail-description">
               Overview : {movieDetails.overview}
             </p>
-            <p className="modal-runtime text-lg text-white">
+            <p className="movie-detail-runtime">
               Runtime: {movieDetails.runtime} minutes
             </p>
           </div>

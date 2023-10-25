@@ -48,7 +48,6 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
         <div className="movie-list-maindiv">
           {movies.map((movie: MovieData) => (
             <div key={movie.id}>
@@ -59,15 +58,14 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
                     alt={movie.title}
                     className="movie-list-image"
                   />
-                  <h2 className="text-lg font-bold mt-2 px-2 py-1">
+                  <span className="movie-list-title whitespace-normal">
                     {movie.title}
-                  </h2>
+                  </span>
                 </div>
               </Link>
             </div>
           ))}
         </div>
-      </div>
       <div className="flex items-center justify-center">
         {renderPaginationButtons()}
       </div>
