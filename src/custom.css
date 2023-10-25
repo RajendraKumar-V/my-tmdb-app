@@ -45,5 +45,5 @@
   @apply w-64 h-80
 }
 .movie-detail-content-div{
-  @apply w-1/2 p-4 pl-4
+  @apply w-1/2 p-4 pl-4;
 }
