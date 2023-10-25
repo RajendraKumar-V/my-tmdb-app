@@ -44,10 +44,6 @@
 .movie-details-image{
   @apply w-64 h-80
 }
-.movie-detail-modal{
-  @apply bg-custom-color w-3/4 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
-  z-index: 70;
-}
 .movie-detail-content-div{
   @apply w-1/2 p-4 pl-4
 }
