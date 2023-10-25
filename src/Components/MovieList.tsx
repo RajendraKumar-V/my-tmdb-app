@@ -9,6 +9,7 @@ interface MovieListProps {
 
 const itemsPerPage = 10;
 
+//function MovieList({ currentPage, totalPages, handlePageChange }){
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -33,9 +34,9 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
         <button
           key={index}
           onClick={() => handlePageChange(index)}
-          className={`px-3 py-2 rounded-md ${
-            index === currentPage ? "bg-blue-500 text-white" : "bg-gray-300"
-          } mr-2`}
+          className={`my-custom-button ${
+            index === currentPage ? "active" : "inactive"
+          }`}
         >
           {index}
         </button>
