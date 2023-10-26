@@ -57,9 +57,9 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
                   alt={movie.title}
                   className="movie-list-image"
                 />
-                <span className="movie-list-title whitespace-normal">
+                <p className="movie-list-title">
                   {movie.title}
-                </span>
+                </p>
               </div>
             </Link>
           </div>
