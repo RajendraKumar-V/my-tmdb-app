@@ -24,13 +24,14 @@
   @apply w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/4 
 }
 .movie-list-imagediv{
-  @apply bg-white rounded-lg shadow-md m-2
+  @apply bg-white rounded-lg shadow-md m-2 relative overflow-hidden;
 }
+
 .movie-list-image{
-  @apply w-48 h-64 object-cover
+  @apply w-48 h-64 object-cover transition-transform transform scale-100 hover:scale-105;
 }
 .movie-list-title{
-  @apply font-bold mt-2 px-2 py-1 whitespace-normal w-40
+  @apply font-bold mt-2 px-2 py-1 whitespace-normal w-40 opacity-0 group-hover:opacity-100
 }
 /*************************************Movie details************************************/
 .movie-details-first-div{
@@ -43,10 +44,10 @@
   @apply bg-custom-color
 }
 .movie-details-image-div{
-  @apply bg-custom-color rounded-lg shadow-md m-2 p-4
+  @apply bg-custom-color rounded-lg shadow-md
 }
 .movie-details-image{
-  @apply w-64 h-80
+  @apply w-64 h-96
 }
 .movie-detail-content-div{
   @apply w-1/2 p-4 pl-4;
