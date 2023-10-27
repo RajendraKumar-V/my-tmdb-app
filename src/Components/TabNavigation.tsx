@@ -25,9 +25,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ onTabChange }) => {
         Movies
       </div>
       <div
-        className={`tab ${
-          activeTab === "series" ? "active" : ""
-        }tab-active`}
+        className={`tab ${activeTab === "series" ? "active" : ""}tab-active`}
         onClick={() => handleTabClick("series")}
       >
         Series

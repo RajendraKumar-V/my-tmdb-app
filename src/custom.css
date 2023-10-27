@@ -19,6 +19,7 @@
 .movie-list-maindiv{
   @apply flex flex-wrap;
   overflow-x: hidden;
+  background-color: #0F1014;
 }
 .movie-list-movieid{
   @apply w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/4 
@@ -53,7 +54,7 @@
   @apply w-1/2 p-4 pl-4;
 }
 .close-button{
-  @apply absolute top-14 left-px m-4 text-white py-2 z-50 ;
+  @apply absolute top-14 left-px m-4 text-white py-1 z-50 ;
 }
 
 .my-custom-button {
@@ -77,5 +78,18 @@
   @apply text-sm mb-4 py-4 text-white
 }
 .movie-detail-runtime{
-  @apply text-xs text-white
+  @apply text-white text-sm font-medium mb-2
 }
+.movie-details-overlay {
+  @apply fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-50
+}
+
+.movie-details-container {
+@apply  bg-custom-color w-3/4 h-3/4 p-10 rounded-lg shadow-lg
+}
+.movie-details-vote-avg{
+  @apply text-white text-xs font-medium mb-2 pt-2
+} 
+.movie-details-vote-count{
+  @apply text-xs text-white
+} 

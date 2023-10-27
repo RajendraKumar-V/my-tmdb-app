@@ -15,7 +15,7 @@ module.exports = {
           paddingLeft: "1rem",
         },
         ".left-px": {
-          left: "1148px",
+          left: "1140px",
         },
         // You can add more custom utilities as needed
       };

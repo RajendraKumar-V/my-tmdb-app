@@ -2,7 +2,8 @@ import React, { FC, useState } from "react";
 import "../custom.css";
 import { MovieData } from "../type";
 import { Link } from "react-router-dom";
-
+import MovieDetail from "./MovieDetail";
+import { useNavigate } from "react-router-dom";
 interface MovieListProps {
   movieData: any;
 }
@@ -11,6 +12,17 @@ const itemsPerPage = 10;
 
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedMovie, setSelectedMovie] = useState<MovieData | null>(null);
+  const navigate = useNavigate();
+  const handleMovieSelect = (movie: MovieData) => {
+    setSelectedMovie(movie);
+    //navigate(`/movie/${movie.id}`);
+  };
+  const handleCloseOverlay = () => {
+    console.log('Check')
+    setSelectedMovie(null);
+    navigate("/"); // Manually handle navigation
+  };
 
   if (!movieData || !movieData.results) {
     return <p>Loading...</p>;
@@ -50,21 +62,27 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
       <div className="movie-list-maindiv">
         {movies.map((movie: MovieData) => (
           <div key={movie.id}>
-            <Link to={`/movie/${movie.id}`}>
-              <div className="movie-list-imagediv group">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  className="movie-list-image"
-                />
-                <p className="movie-list-title">
-                  {movie.title}
-                </p>
-              </div>
-            </Link>
+            <div
+              className="movie-list-imagediv group"
+              onClick={() => handleMovieSelect(movie)}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="movie-list-image"
+              />
+              <p className="movie-list-title">{movie.title}</p>
+            </div>
           </div>
         ))}
       </div>
+
+      {selectedMovie && (
+        <div className="movie-details-overlay">
+          <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} />
+          <button onClick={handleCloseOverlay}>Close</button>
+        </div>
+      )}
       <div className="flex items-center justify-center">
         {renderPaginationButtons()}
       </div>
