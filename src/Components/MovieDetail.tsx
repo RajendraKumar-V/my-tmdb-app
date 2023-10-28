@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 interface MovieDetailProps {
   movie: MovieData;
   movieId: number;
+  
 }
 
 Modal.setAppElement("#root");
@@ -16,22 +17,22 @@ Modal.setAppElement("#root");
 function MovieDetail({ movie, movieId }: MovieDetailProps) {
   const [movieDetails, setMovieDetails] = useState<MovieData | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(true);
- // const [backgroundOpacity, setBackgroundOpacity] = useState("bg-opacity-70"); 
-  const apiKey = process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
+  // const [backgroundOpacity, setBackgroundOpacity] = useState("bg-opacity-70");
+  const apiKey =
+    process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
+  const navigate = useNavigate();
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+    navigate("/");
+    window.location.reload();
+  };
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => setMovieDetails(data))
       .catch((error) => console.error("Error fetching movie details:", error));
-  }, [apiUrl, movieId]);
-
-  const navigate = useNavigate();
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-    navigate("/");
-    //setBackgroundOpacity("");
-  };
+  }, []);
 
   if (!movieDetails) {
     return <p>Loading...</p>;
@@ -62,7 +63,7 @@ function MovieDetail({ movie, movieId }: MovieDetailProps) {
                   Overview : {movieDetails.overview}
                 </p>
                 <p className="movie-detail-runtime">
-                  Runtime: {movieDetails.runtime} minutes
+                  Runtime : {movieDetails.runtime}
                 </p>
                 <p className="movie-details-vote-avg">
                   Vote Average: {movieDetails.vote_average}

@@ -29,10 +29,10 @@
 }
 
 .movie-list-image{
-  @apply w-48 h-64 object-cover transition-transform transform scale-100 hover:scale-105;
+  @apply w-48 h-64 ;
 }
 .movie-list-title{
-  @apply font-bold mt-2 px-2 py-1 whitespace-normal w-40 opacity-0 group-hover:opacity-100
+  @apply font-bold mt-2;
 }
 /*************************************Movie details************************************/
 .movie-details-first-div{
@@ -69,7 +69,7 @@
   @apply bg-gray-300 text-gray-700 hover:bg-gray-400;
 }
 .movie-detail-title{
-  @apply text-3xl font-extrabold  py-4 mb-2 text-white
+  @apply text-3xl font-extrabold  py-4 mb-2 text-white;
 }
 .movie-detail-release{
   @apply text-lg mb-4 py-4 text-white

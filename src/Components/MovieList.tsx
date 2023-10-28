@@ -3,25 +3,17 @@ import "../custom.css";
 import { MovieData } from "../type";
 import { Link } from "react-router-dom";
 import MovieDetail from "./MovieDetail";
-import { useNavigate } from "react-router-dom";
 interface MovieListProps {
   movieData: any;
 }
 
-const itemsPerPage = 10;
+const itemsPerPage = 20;
 
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState<MovieData | null>(null);
-  const navigate = useNavigate();
   const handleMovieSelect = (movie: MovieData) => {
     setSelectedMovie(movie);
-    //navigate(`/movie/${movie.id}`);
-  };
-  const handleCloseOverlay = () => {
-    console.log('Check')
-    setSelectedMovie(null);
-    navigate("/"); // Manually handle navigation
   };
 
   if (!movieData || !movieData.results) {
@@ -63,7 +55,7 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
         {movies.map((movie: MovieData) => (
           <div key={movie.id}>
             <div
-              className="movie-list-imagediv group"
+              className="movie-list-imagediv"
               onClick={() => handleMovieSelect(movie)}
             >
               <img
@@ -71,7 +63,6 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
                 alt={movie.title}
                 className="movie-list-image"
               />
-              <p className="movie-list-title">{movie.title}</p>
             </div>
           </div>
         ))}
@@ -80,7 +71,6 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
       {selectedMovie && (
         <div className="movie-details-overlay">
           <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} />
-          <button onClick={handleCloseOverlay}>Close</button>
         </div>
       )}
       <div className="flex items-center justify-center">
