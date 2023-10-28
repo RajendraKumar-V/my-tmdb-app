@@ -69,13 +69,13 @@
   @apply bg-gray-300 text-gray-700 hover:bg-gray-400;
 }
 .movie-detail-title{
-  @apply text-3xl font-extrabold  py-4 mb-2 text-white;
+  @apply text-3xl font-extrabold  py-1 mb-2 text-white;
 }
 .movie-detail-release{
-  @apply text-lg mb-4 py-4 text-white
+  @apply text-lg mb-4 py-2 text-white
 }
 .movie-detail-description{
-  @apply text-sm mb-4 py-4 text-white
+  @apply text-sm mb-4 py-1 text-white
 }
 .movie-detail-runtime{
   @apply text-white text-sm font-medium mb-2
@@ -85,11 +85,11 @@
 }
 
 .movie-details-container {
-@apply  bg-custom-color w-3/4 h-3/4 p-10 rounded-lg shadow-lg
+@apply  bg-custom-color w-3/4 h-3/4 p-5 rounded-lg shadow-lg
 }
 .movie-details-vote-avg{
-  @apply text-white text-xs font-medium mb-2 pt-2
+  @apply text-white text-xs font-medium mb-1 pt-1
 } 
 .movie-details-vote-count{
-  @apply text-xs text-white
+  @apply text-xs text-white mb-1 pt-1
 } 
