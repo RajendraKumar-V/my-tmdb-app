@@ -1,61 +1,65 @@
 import React, { useState } from "react";
+//import { Link} from "react-router-dom"; // Import Link and useLocation
 import ErrorBoundary from "./Components/ErrorBoundary";
-import useMovieData from "./CustomHooks/useMovieData";
+import useMediaData from "./CustomHooks/useMovieData";
 import MovieList from "./Components/MovieList";
-import MovieDetail from "./Components/MovieDetail";
+import SeriesList from "./Components/SeriesList";
 import TabNavigation from "./Components/TabNavigation";
-import "./App.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-
-interface MovieDetailWrapperProps {
-  movie: any;
-  movieId: number; // You should replace 'any' with the actual type of the 'movie' prop
-}
 
 function App() {
+  //const location = useLocation(); // Use useLocation to determine the current location
   const [activeTab, setActiveTab] = useState("movies");
-  //const movieId = activeTab === "movies" ? 550 : 12345;
-  const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=0ed9e5583ee0385087dff929f46a1b21&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false`;
-  const { movie, loading, error } = useMovieData(apiUrl);
-  const { id: movieId } = useParams();
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
+
+  const apiKey =
+    process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
+
+  const getApiUrl = (tab: string) => {
+    if (tab === "movies") {
+      return `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
+    } else if (tab === "series") {
+      return `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}`;
+    } else {
+      return "";
+    }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const { mediaData, loading } = useMediaData(getApiUrl(activeTab));
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    if (tab === "movies") {
+      console.log('Movies');
+      <Link to="/movies"/>;
+    } else if (tab === "series") {
+      console.log('Series');
+      <Link to="/series"/>;
+    }
+  };
 
   return (
-    <div className="App">
-      <ErrorBoundary>
-        <TabNavigation onTabChange={handleTabChange} />
-        <BrowserRouter>
+    <BrowserRouter>
+      <div className="App">
+        <ErrorBoundary>
+          <TabNavigation onTabChange={handleTabChange} />
           <Routes>
-          <Route path="/" element={<MovieList movieData={movie} />} />
-          {movie && (
-            <Route
-              path="/movie/:id"
-              element={<MovieDetailWrapper movie={movie} movieId={movieId ? parseInt(movieId) : 0} />}
+          <Route
+              path="/"
+              element={<MovieList movieData={mediaData || []} />}
             />
-          )}
+            <Route
+              path="/movies"
+              element={<MovieList movieData={mediaData || []} />}
+            />
+            <Route
+              path="/series"
+              element={<SeriesList seriesData={mediaData || []} />}
+            />
           </Routes>
-        </BrowserRouter>
-      </ErrorBoundary>
-    </div>
+        </ErrorBoundary>
+      </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-function MovieDetailWrapper({ movie }: MovieDetailWrapperProps) {
-  const { id } = useParams();
-  const movieId = id ? parseInt(id) : 0;
-
-  return <MovieDetail movie={movie} movieId={movieId} />;
-}

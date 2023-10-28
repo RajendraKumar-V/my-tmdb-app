@@ -1,27 +1,29 @@
 import { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios'; 
+import axios from 'axios'; 
 import { MovieData } from "../type";
 
 const useMovieData = (apiUrl: string, initialData: MovieData | null = null) => {
   const apiKey = process.env.REACT_APP_API_KEY || '0ed9e5583ee0385087dff929f46a1b21';
-  const [movie, setMovie] = useState<MovieData | null>(initialData);
+
+  const [mediaData, setMediaData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}?api_key=${apiKey}`)
-      .then((response: AxiosResponse<MovieData>) => { 
-        setMovie(response.data);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        setMediaData(response.data);
         setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
+      } catch (error) {
+        //setError(error.toString());
         setLoading(false);
-      });
-  }, [apiKey, apiUrl]);
+      }
+    };
 
-  return { movie, loading, error };
+    fetchData();
+  }, [apiUrl]);
+
+  return { mediaData, loading};
 };
 
 export default useMovieData;
