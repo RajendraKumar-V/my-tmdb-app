@@ -16,7 +16,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ onTabChange }) => {
 
   return (
     <div className="tab-main-div">
-      <div className="prime-div">Prime Flix</div>
+      <div className="prime-div">Movie Flix</div>
       <div className="tab-container">
         <div
           className={`tab ${
