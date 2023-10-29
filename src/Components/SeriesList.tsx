@@ -10,10 +10,12 @@ const itemsPerPage = 20;
 
 const SeriesList: FC<SeriesListProps> = ({ seriesData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedSeriesId, setSelectedSeriesId] = useState<number | null>(null);
+  const [selectedSeries, setSelectedSeries] = useState<SeriesData | null>(null);
 
-  const handleSeriesSelect = (seriesId: number) => {
-    setSelectedSeriesId(seriesId);
+  const handleSeriesSelect = (seriesData: SeriesData) => {
+    if (selectedSeries !== null) {
+      setSelectedSeries(seriesData);
+    }
   };
 
   let totalPages = 0;
@@ -51,25 +53,26 @@ const SeriesList: FC<SeriesListProps> = ({ seriesData }) => {
 
   return (
     <>
-      <div className="series-list-maindiv">
+      <div className="movie-list-maindiv">
         {seriesList.map((series: SeriesData) => (
           <div key={series.id}>
             <div
-              className="series-list-imagediv"
-              onClick={() => handleSeriesSelect(series.id)} // Pass the series ID
+              className="group movie-list-imagediv relative"
+              onClick={() => seriesData && handleSeriesSelect(seriesData[0])}
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500${series.poster_path}`}
                 alt={series.name}
-                className="series-list-image"
+                className="movie-list-image"
               />
+              <p className="movie-list-title">{series.name}</p>
             </div>
           </div>
         ))}
       </div>
-      {selectedSeriesId !== null && (
+      {selectedSeries && (
         <div className="series-details-overlay">
-          <SeriesDetail seriesId={selectedSeriesId} />
+          <SeriesDetail series={selectedSeries} seriesId={selectedSeries.id} />
         </div>
       )}
       <div className="flex items-center justify-center">

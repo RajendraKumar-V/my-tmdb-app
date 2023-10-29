@@ -10,12 +10,11 @@ import { Link } from "react-router-dom";
 Modal.setAppElement("#root");
 
 interface SeriesDetailProps {
+    series: SeriesDetailData;
     seriesId: number;
   }
-
-  const SeriesDetail: FC<SeriesDetailProps> = ({ seriesId }) => {
-    //const [series, setSeries] = useState<SeriesData | null>(null);
-    //function SeriesDetail({ series, seriesId}: SeriesDetailProps) {
+  
+  function SeriesDetail({ series, seriesId }:SeriesDetailProps){
   const [seriesDetails, setSeriesDetails] = useState<SeriesDetailData | null>(null);
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const apiKey = process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
