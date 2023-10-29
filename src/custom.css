@@ -6,14 +6,14 @@
   all: initial;
 }
 .tab-navigation{
-  @apply flex justify-center bg-gray-900 p-4
+  @apply flex justify-center  text-white  bg-gray-900 p-4
 }
 .tab-cursor-pointer{
-  @apply px-5 py-2 text-white font-bold transition bg-gray-900 hover:bg-gray-700
+  @apply px-5 py-4 m-1 mx-10   text-white font-bold transition bg-gray-900 hover:bg-gray-700
 }
 
 .tab-active{
-  @apply bg-orange-500 px-5 py-2 text-white font-bold transition
+  @apply bg-orange-500 px-5 py-2  text-white font-bold transition 
 }
 /*---------------------------Movie list*/
 .movie-list-maindiv{
