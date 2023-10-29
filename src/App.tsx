@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import { Link} from "react-router-dom"; // Import Link and useLocation
 import ErrorBoundary from "./Components/ErrorBoundary";
 import useMediaData from "./CustomHooks/useMovieData";
 import MovieList from "./Components/MovieList";
@@ -8,7 +7,6 @@ import TabNavigation from "./Components/TabNavigation";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
-  //const location = useLocation(); // Use useLocation to determine the current location
   const [activeTab, setActiveTab] = useState("movies");
 
   const apiKey =

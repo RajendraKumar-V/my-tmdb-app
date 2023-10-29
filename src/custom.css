@@ -5,15 +5,20 @@
 .reset-user-agent-styles {
   all: initial;
 }
-.tab-navigation{
-  @apply flex justify-center  text-white  bg-gray-900 p-4
+.tab-main-div {
+  @apply flex p-4 bg-gray-900 text-white font-bold;
 }
-.tab-cursor-pointer{
-  @apply px-5 py-4 m-1 mx-10   text-white font-bold transition bg-gray-900 hover:bg-gray-700
+.prime-div{
+  @apply flex text-xl font-bold;
 }
-
-.tab-active{
-  @apply bg-orange-500 px-5 py-2  text-white font-bold transition 
+.tab-container{
+  @apply flex justify-center items-center flex-grow;
+}
+.tab-image{
+  @apply flex items-center;
+}
+.tab-active {
+  @apply bg-orange-500 text-white font-bold transition m-2
 }
 /*---------------------------Movie list*/
 .movie-list-maindiv{

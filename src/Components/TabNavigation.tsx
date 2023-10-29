@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import './Tabnavigation.css';
 import "../custom.css";
+import closeIcon from "../image/close-icon.svg";
 
 interface TabNavigationProps {
   onTabChange: (tab: string) => void;
@@ -15,30 +15,28 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ onTabChange }) => {
   };
 
   return (
-    <div className="tab-navigation">
-      <div
-        className={`tab ${
-          activeTab === "movies" ? "active" : ""
-        } cursor-pointer ${
-          activeTab === "movies"
-            ? "bg-orange-500 text-white font-bold transition m-1"
-            : "bg-gray-500 text-white font-bold transition m-1"
-        }`}
-        onClick={() => handleTabClick("movies")}
-      >
-        Movies
+    <div className="tab-main-div">
+      <div className="prime-div">Prime Flix</div>
+      <div className="tab-container">
+        <div
+          className={`tab ${
+            activeTab === "movies" ? "tab-active" : ""
+          }`}
+          onClick={() => handleTabClick("movies")}
+        >
+          Movies
+        </div>
+        <div
+          className={`tab ${
+            activeTab === "series" ? "tab-active" : ""
+          }`}
+          onClick={() => handleTabClick("series")}
+        >
+          Series
+        </div>
       </div>
-      <div
-        className={`tab ${
-          activeTab === "series" ? "active" : ""
-        } cursor-pointer ${
-          activeTab === "series"
-            ? "bg-orange-500 text-white font-bold transition m-1"
-            : "bg-gray-500 text-white font-bold transition m-1"
-        }`}
-        onClick={() => handleTabClick("series")}
-      >
-        Series
+      <div className="tab-image">
+        <img src={closeIcon} alt="Close" className="h-6 w-6 cursor-pointer" />
       </div>
     </div>
   );
