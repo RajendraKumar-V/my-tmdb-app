@@ -1,5 +1,4 @@
 import React, { FC,useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { SeriesDetailData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";

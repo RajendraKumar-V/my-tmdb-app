@@ -22,7 +22,7 @@ function App() {
     }
   };
 
-  const { mediaData, loading } = useMediaData(getApiUrl(activeTab));
+  const { mediaData} = useMediaData(getApiUrl(activeTab));
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);

@@ -1,5 +1,5 @@
-import React, { FC, useState, useEffect } from "react";
-import { SeriesData, SeriesDataResponse } from "../type";
+import React, { FC, useState} from "react";
+import { SeriesData} from "../type";
 import SeriesDetail from "./SeriesDetail";
 
 interface SeriesListProps {

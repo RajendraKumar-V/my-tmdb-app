@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { MovieData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";
@@ -16,8 +15,7 @@ Modal.setAppElement("#root");
 
 function MovieDetail({ movie, movieId }: MovieDetailProps) {
   const [movieDetails, setMovieDetails] = useState<MovieData | null>(null);
-  const [modalIsOpen, setModalIsOpen] = useState(true);
-  // const [backgroundOpacity, setBackgroundOpacity] = useState("bg-opacity-70");
+  const [modalIsOpen, setModalIsOpen] = useState(true);;
   const apiKey =
     process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;

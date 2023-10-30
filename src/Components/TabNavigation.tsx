@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../custom.css";
-import closeIcon from "../image/close-icon.svg";
+import accusant from "../image/accusoft.svg";
 
 interface TabNavigationProps {
   onTabChange: (tab: string) => void;
@@ -36,7 +36,7 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ onTabChange }) => {
         </div>
       </div>
       <div className="tab-image">
-        <img src={closeIcon} alt="Close" className="h-6 w-6 cursor-pointer" />
+        <img src={accusant} alt="Close" className="h-6 w-6 cursor-pointer" />
       </div>
     </div>
   );
