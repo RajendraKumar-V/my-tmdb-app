@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        "custom-color": "#181818", // Use your desired color code here
+        "custom-color": "#181818",
       },
     },
   },
@@ -17,7 +17,6 @@ module.exports = {
         ".left-px": {
           left: "1140px",
         },
-        // You can add more custom utilities as needed
       };
       addUtilities(newUtilities);
     },
