@@ -17,6 +17,9 @@ module.exports = {
         ".left-px": {
           left: "1140px",
         },
+        ".pr-px": {
+          paddingRight: "870px",
+        },
       };
       addUtilities(newUtilities);
     },

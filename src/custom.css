@@ -12,7 +12,7 @@
   @apply flex text-xl font-bold;
 }
 .tab-container{
-  @apply flex justify-center items-center flex-grow;
+  @apply flex justify-center items-center flex-grow pr-px;
 }
 .tab-image{
   @apply flex items-center;
