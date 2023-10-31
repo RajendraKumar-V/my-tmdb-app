@@ -31,7 +31,7 @@ function MovieDetail({ movie, movieId }: MovieDetailProps) {
       .then((response) => response.json())
       .then((data) => setMovieDetails(data))
       .catch((error) => console.error("Error fetching movie details:", error));
-  }, []);
+  }, [apiUrl]);
 
   if (!movieDetails) {
     return <p>Loading...</p>;

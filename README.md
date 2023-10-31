@@ -43,6 +43,19 @@ It will be redirected to movie detail page.
 -On mouse hove on movie cards,movie title displayed in a tooltip.
 -For rich UI experience implemented tail wind css.
 
+### `Screen shots`
+-Movie list screen 
+![Movie_list Screen](./src/ScreenShots/Movie_List.PNG)
+
+-Movie detail screen
+![Movie_detail Screen](./src/ScreenShots/Movie_Detail.PNG)
+
+-Series list screen
+![Movie_detail Screen](./src/ScreenShots/Series_List.PNG)
+
+-Series detail screen
+![Movie_detail Screen](./src/ScreenShots/Series_Detail.PNG)
+
 ### `npm start`
 
 Runs the app in the development mode.\
