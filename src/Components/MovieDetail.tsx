@@ -19,7 +19,6 @@ function MovieDetail({ movie, movieId }: MovieDetailProps) {
   const apiKey =
     process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-  console.log('MoivieListURL',apiUrl);
   const navigate = useNavigate();
   const handleCloseModal = () => {
     setModalIsOpen(false);

@@ -25,7 +25,6 @@ interface SeriesDetailProps {
 
   useEffect(() => {
     const apiUrl = `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${apiKey}`;
-    console.log('SerieslistURL',apiUrl);
 
     fetch(apiUrl)
       .then((response) => response.json())
