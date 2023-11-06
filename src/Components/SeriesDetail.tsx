@@ -15,13 +15,10 @@ interface SeriesDetailProps {
   
   function SeriesDetail({ series, seriesId }:SeriesDetailProps){
   const [seriesDetails, setSeriesDetails] = useState<SeriesDetailData | null>(null);
-  const [modalIsOpen, setModalIsOpen] = useState(true);
+  const [showModal, setShowModal] = useState(true);
   const apiKey = process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const navigate = useNavigate();
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-    navigate("/");
-  };
+ 
 
   useEffect(() => {
     const apiUrl = `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${apiKey}`;
@@ -36,15 +33,22 @@ interface SeriesDetailProps {
   if (!seriesDetails) {
     return <p>Loading...</p>;
   }
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/");
+    window.location.reload();
+  };
 
   return (
     <div>
-      {modalIsOpen && (
-        <div className="series-details-overlay">
-          <div className="series-details-container">
-            <Link to="/" className="close-button">
-              <img src={closeIcon} alt="Close" onClick={handleCloseModal} />
-            </Link>
+        <button onClick={openModal}>Open Modal</button>
+      {showModal && (
+        <div className="movie-details-overlay">
+          <div className="modal-content">
             <div className="flex">
               <div className="series-details-image-div">
                 <img

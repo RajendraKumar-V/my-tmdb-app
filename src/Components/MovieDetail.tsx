@@ -8,24 +8,19 @@ import { Link } from "react-router-dom";
 interface MovieDetailProps {
   movie: MovieData;
   movieId: number;
-  
 }
 
 Modal.setAppElement("#root");
 
 function MovieDetail({ movie, movieId }: MovieDetailProps) {
   const [movieDetails, setMovieDetails] = useState<MovieData | null>(null);
-  const [modalIsOpen, setModalIsOpen] = useState(true);;
+  const [showModal, setShowModal] = useState(true);
   const apiKey =
     process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-  console.log('MoivieListURL',apiUrl);
+  console.log("MoivieListURL", apiUrl);
   const navigate = useNavigate();
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-    navigate("/");
-    window.location.reload();
-  };
+
   useEffect(() => {
     fetch(apiUrl)
       .then((response) => response.json())
@@ -37,16 +32,24 @@ function MovieDetail({ movie, movieId }: MovieDetailProps) {
     return <p>Loading...</p>;
   }
 
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    navigate("/");
+    window.location.reload();
+  };
+
   return (
     <div>
-      {modalIsOpen && (
+      <button onClick={openModal}>Open Modal</button>
+      {showModal && (
         <div className="movie-details-overlay">
-          <div className="movie-details-container">
-            <Link to="/" className="close-button">
-              <img src={closeIcon} alt="Close" onClick={handleCloseModal} />
-            </Link>
+          <div className="modal-content">
             <div className="flex">
-              <div className="movie-details-image-div">
+              <div className="bg-custom-color rounded-lg shadow-md movie-details-image-div">
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
                   alt={movieDetails.title}

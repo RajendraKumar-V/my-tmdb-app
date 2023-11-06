@@ -53,7 +53,7 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
       <div className="movie-list-maindiv">
         {movies.map((movie: MovieData) => (
          <div key={movie.id}>
-         <div className="group movie-list-imagediv relative" onClick={() => handleMovieSelect(movie)}>
+         <div className="group bg-white rounded-lg shadow-md m-2 relative movie-list-imagediv" onClick={() => handleMovieSelect(movie)}>
            <img
              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
              alt={movie.title}
