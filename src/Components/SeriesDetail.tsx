@@ -1,4 +1,4 @@
-import React, { FC,useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { SeriesDetailData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";
@@ -22,13 +22,12 @@ interface SeriesDetailProps {
 
   useEffect(() => {
     const apiUrl = `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${apiKey}`;
-    console.log('SerieslistURL',apiUrl);
 
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => setSeriesDetails(data))
       .catch((error) => console.error("Error fetching series details:", error));
-  }, []);
+  }, [apiKey,seriesId]);
 
   if (!seriesDetails) {
     return <p>Loading...</p>;

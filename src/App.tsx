@@ -27,10 +27,8 @@ function App() {
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     if (tab === "movies") {
-      console.log('Movies');
       <Link to="/movies"/>;
     } else if (tab === "series") {
-      console.log('Series');
       <Link to="/series"/>;
     }
   };
