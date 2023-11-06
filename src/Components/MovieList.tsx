@@ -70,7 +70,7 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
           <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} />
         </div>
       )}
-      <div className="flex items-center justify-center">
+      <div className="flex-center">
         {renderPaginationButtons()}
       </div>
     </>

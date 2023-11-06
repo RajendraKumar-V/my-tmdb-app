@@ -110,6 +110,14 @@
   visibility: visible;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0F1014;
+}
+
+
 /*************************************Movie details************************************/
 .movie-details-overlay {
   position: fixed;
