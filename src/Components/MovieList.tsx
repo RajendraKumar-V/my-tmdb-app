@@ -6,7 +6,7 @@ interface MovieListProps {
   movieData: any;
 }
 
-const itemsPerPage = 20;
+const itemsPerPage = 5;
 
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,26 +28,21 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+ 
+
   const renderPaginationButtons = () => {
-    const paginationButtons = [];
-
-    for (let index = 1; index <= totalPages; index++) {
-      paginationButtons.push(
-        <button
-          key={index}
-          onClick={() => handlePageChange(index)}
-          className={`my-custom-button ${
-            index === currentPage ? "active" : "inactive"
-          }`}
-        >
-          {index}
-        </button>
-      );
-    }
-
-    return paginationButtons;
+    return Array.from({ length: totalPages }, (_, index) => (
+      <button
+        key={index + 1}
+        onClick={() => handlePageChange(index + 1)}
+        className={`my-custom-button ${
+          index + 1 === currentPage ? "active" : "inactive"
+        }`}
+      >
+        {index + 1}
+      </button>
+    ));
   };
-
   return (
     <>
       <div className="movie-list-maindiv">

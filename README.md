@@ -24,6 +24,26 @@ npm install axios react-router-dom react-error-boundary
      npx tailwindcss init
 -Add the paths to all of your template files in your tailwind.config.js file
 -npx tailwindcss -i ./src/custom.css -o ./dist/output.css --watch
+
+### `Jest Set Up`
+Jest: The core testing framework.
+npm install --save-dev jest
+
+@testing-library/react: Provides utilities for testing React components.
+npm install --save-dev @testing-library/react
+
+npm install --save-dev jest@^28
+
+@testing-library/jest-dom: Extends Jest matchers for better assertions in your tests.
+npm install --save-dev @testing-library/jest-dom
+
+npm install --save-dev jest@^29
+
+ts-jest: Allows Jest to work with TypeScript.
+npm install --save-dev ts-jest
+
+@types/jest: TypeScript types for Jest.
+npm install --save-dev @types/jest
      
 ### `Functionality implemented`
 
