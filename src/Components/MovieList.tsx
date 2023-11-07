@@ -6,7 +6,7 @@ interface MovieListProps {
   movieData: any;
 }
 
-const itemsPerPage = 5;
+const itemsPerPage = 20;
 
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const [currentPage, setCurrentPage] = useState(1);
