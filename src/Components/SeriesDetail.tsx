@@ -46,7 +46,7 @@ interface SeriesDetailProps {
     <div>
         <button onClick={openModal}>Open Modal</button>
       {showModal && (
-        <div className="movie-details-overlay">
+        <div>
           <div className="modal-content">
             <div className="flex">
               <div className="series-details-image-div">

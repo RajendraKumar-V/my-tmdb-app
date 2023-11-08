@@ -62,9 +62,10 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
 
       {selectedMovie && (
         <div className="movie-details-overlay">
-          <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} />
+          <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} setSelectedMovie={setSelectedMovie} />
         </div>
       )}
+      
       <div className="flex-center">
         {renderPaginationButtons()}
       </div>

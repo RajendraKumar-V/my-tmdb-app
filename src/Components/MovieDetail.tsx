@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MovieData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";
@@ -8,11 +8,12 @@ import { Link } from "react-router-dom";
 interface MovieDetailProps {
   movie: MovieData;
   movieId: number;
+  setSelectedMovie:Dispatch<SetStateAction<MovieData | null>>
 }
 
 Modal.setAppElement("#root");
 
-function MovieDetail({ movie, movieId }: MovieDetailProps) {
+function MovieDetail({ movie, movieId,setSelectedMovie }: MovieDetailProps) {
   const [movieDetails, setMovieDetails] = useState<MovieData | null>(null);
   const [showModal, setShowModal] = useState(true);
   const apiKey =
@@ -37,8 +38,7 @@ function MovieDetail({ movie, movieId }: MovieDetailProps) {
 
   const closeModal = () => {
     setShowModal(false);
-    navigate("/");
-    window.location.reload();
+    setSelectedMovie(null);
   };
 
   return (
@@ -47,6 +47,9 @@ function MovieDetail({ movie, movieId }: MovieDetailProps) {
       {showModal && (
         <div className="movie-details-overlay">
           <div className="modal-content">
+            <Link to="/" className="close-button">
+              <img src={closeIcon}  alt="Close" onClick={closeModal} />
+            </Link>
             <div className="flex">
               <div className="bg-custom-color rounded-lg shadow-md movie-details-image-div">
                 <img
