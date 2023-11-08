@@ -1,10 +1,16 @@
-### `Dependencies or packages installed`
+### `How to run the project/app`
 
-Axios 
-React router DOM
-React Error Boundary
-Tailwind css - for better and rich UI
-Jest
+- Git clone https://github.com/RajendraKumar-V/my-tmdb-app
+- npm install
+- npm start
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser
+
+
+### `npm test`
+
+To launch the test runner in interactive watch mode for your project, please use the following command. This will help you ensure the correctness of your code and assist in identifying any issues during development:
+
+npm test
 
 ### `Functionality implemented`
 
@@ -37,18 +43,12 @@ It will be redirected to movie detail page.
 -Series detail screen
 ![Movie_detail Screen](./src/ScreenShots/Series_Detail.PNG)
 
-### `How to run the project/app`
+### `Frameworks/Libraries used`
 
-- Git clone https://github.com/RajendraKumar-V/my-tmdb-app
-- npm install
-- npm start
+React
+Tailwind
+Jest
 
-
-### `npm test`
-
-To launch the test runner in interactive watch mode for your project, please use the following command. This will help you ensure the correctness of your code and assist in identifying any issues during development:
-
-npm test
 
 
 
