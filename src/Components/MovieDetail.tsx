@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MovieData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";
-import { useNavigate } from "react-router-dom";
 import closeIcon from "../image/close-icon.svg";
 import { Link } from "react-router-dom";
 interface MovieDetailProps {
@@ -19,14 +18,25 @@ function MovieDetail({ movie, movieId,setSelectedMovie }: MovieDetailProps) {
   const apiKey =
     process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
   const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(apiUrl)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to fetch movie details (HTTP ${response.status})`);
+        }
+        return response.json();
+      })
       .then((data) => setMovieDetails(data))
-      .catch((error) => console.error("Error fetching movie details:", error));
+      .catch((error) => {
+        if (error instanceof SyntaxError) {
+          console.error("Error fetching movie details: Invalid JSON response",error);
+        } else {
+          console.error("Error fetching movie details:", error);
+        }
+      });
   }, [apiUrl]);
+
 
   if (!movieDetails) {
     return <p>Loading...</p>;
