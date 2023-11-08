@@ -61,7 +61,7 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
       </div>
 
       {selectedMovie && (
-        <div className="movie-details-overlay">
+        <div data-testid="mock-movie-detail" className="movie-details-overlay">
           <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} setSelectedMovie={setSelectedMovie} />
         </div>
       )}
