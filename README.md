@@ -50,11 +50,7 @@ To launch the test runner in interactive watch mode for your project, please use
 
 npm test
 
-### `npm run build`
 
-To build your app for production and prepare it for deployment, you can utilize the following command:
-
-npm run build
 
 
 
