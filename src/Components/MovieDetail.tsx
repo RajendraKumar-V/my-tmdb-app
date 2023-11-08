@@ -42,10 +42,6 @@ function MovieDetail({ movie, movieId,setSelectedMovie }: MovieDetailProps) {
     return <p>Loading...</p>;
   }
 
-  const openModal = () => {
-    setShowModal(true);
-  };
-
   const closeModal = () => {
     setShowModal(false);
     setSelectedMovie(null);
@@ -53,12 +49,11 @@ function MovieDetail({ movie, movieId,setSelectedMovie }: MovieDetailProps) {
 
   return (
     <div>
-      <button onClick={openModal}>Open Modal</button>
       {showModal && (
         <div className="movie-details-overlay">
           <div className="modal-content">
             <Link to="/" className="close-button">
-              <img src={closeIcon}  alt="Close" onClick={closeModal} />
+              <img src={closeIcon} data-testid="Close-Modal"  alt="Close" onClick={closeModal} />
             </Link>
             <div className="flex">
               <div className="bg-custom-color rounded-lg shadow-md movie-details-image-div">
