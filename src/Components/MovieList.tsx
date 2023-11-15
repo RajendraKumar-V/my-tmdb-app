@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState} from "react";
 import "../custom.css";
 import { MovieData } from "../type";
 import MovieDetail from "./MovieDetail";
+
 interface MovieListProps {
-  movieData: any;
+  movieData: MovieData[] | null;
 }
 
 const itemsPerPage = 20;
@@ -11,24 +12,28 @@ const itemsPerPage = 20;
 const MovieList: FC<MovieListProps> = ({ movieData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState<MovieData | null>(null);
+
   const handleMovieSelect = (movie: MovieData) => {
     setSelectedMovie(movie);
   };
 
-  if (!movieData || !movieData.results) {
+  if (movieData === null) {
     return <p>Loading...</p>;
+  }
+
+  if (!Array.isArray(movieData) || movieData.length === 0) {
+    return <p>No movies found.</p>;
   }
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const movies = movieData.results.slice(startIndex, endIndex);
+  const movies = movieData.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(movieData.results.length / itemsPerPage);
+  const totalPages = Math.ceil(movieData.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
- 
 
   const renderPaginationButtons = () => {
     return Array.from({ length: totalPages }, (_, index) => (
@@ -45,30 +50,35 @@ const MovieList: FC<MovieListProps> = ({ movieData }) => {
   };
   return (
     <>
-      <div className="movie-list-maindiv">
+      <div className="movie-list-maindiv" data-testid="mocked-movie-detail">
         {movies.map((movie: MovieData) => (
-         <div key={movie.id}>
-         <div className="group bg-white rounded-lg shadow-md m-2 relative movie-list-imagediv" onClick={() => handleMovieSelect(movie)}>
-           <img
-             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-             alt={movie.title}
-             className="movie-list-image"
-           />
-             <p className="movie-list-title">{movie.title}</p>
-         </div>
-       </div>
+          <div key={movie.id}>
+            <div
+              className="group bg-white rounded-lg shadow-md m-2 relative movie-list-imagediv"
+              onClick={() => handleMovieSelect(movie)}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="movie-list-image"
+              />
+              <p className="movie-list-title">{movie.title}</p>
+            </div>
+          </div>
         ))}
       </div>
 
       {selectedMovie && (
         <div data-testid="mock-movie-detail" className="movie-details-overlay">
-          <MovieDetail movie={selectedMovie} movieId={selectedMovie.id} setSelectedMovie={setSelectedMovie} />
+          <MovieDetail
+            movie={selectedMovie}
+            movieId={selectedMovie.id}
+            setSelectedMovie={setSelectedMovie}
+          />
         </div>
       )}
-      
-      <div className="flex-center">
-        {renderPaginationButtons()}
-      </div>
+
+      <div className="flex-center">{renderPaginationButtons()}</div>
     </>
   );
 };

@@ -1,26 +1,40 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { MovieData } from "../type";
+import {AxiosError } from "axios";
+import themoviedb from "../../src/lib/themoviedb/themoviedb.js";
 
-const useMovieData = (apiUrl: string, initialData: MovieData | null = null) => {
-  const [mediaData, setMediaData] = useState(null);
+interface DiscoverOptions {
+  api_key: string;
+}
+
+interface DiscoverResponse {
+  results: MovieData[];
+}
+
+const useMovieData = (
+  options: DiscoverOptions,
+  success: (data: MovieData[]) => void,
+  error: (error: AxiosError) => void,
+  initialData: MovieData[] | null = null
+) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(apiUrl);
-        setMediaData(response.data);
+        await themoviedb.discover.getMovies(options, success, error);
+
         setLoading(false);
-      } catch (error) {
+      } catch (err) {
+        console.error("Error fetching movie data:", err);
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [apiUrl]);
+  }, [options.api_key, success, error]);
 
-  return { mediaData, loading };
+  return { loading };
 };
 
 export default useMovieData;

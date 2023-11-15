@@ -19,24 +19,20 @@ const TabNavigation: React.FC<TabNavigationProps> = ({ onTabChange }) => {
       <div className="prime-div">Movie Flix</div>
       <div className="tab-container">
         <div
-          className={`tab ${
-            activeTab === "movies" ? "tab-active" : ""
-          }`}
+          className={`tab ${activeTab === "movies" ? "tab-active" : ""}`}
           onClick={() => handleTabClick("movies")}
         >
           Movies
         </div>
         <div
-          className={`tab ${
-            activeTab === "series" ? "tab-active" : ""
-          }`}
+          className={`tab ${activeTab === "series" ? "tab-active" : ""}`}
           onClick={() => handleTabClick("series")}
         >
           Series
         </div>
       </div>
       <div className="tab-image">
-        <img src={user} alt="user" className="h-6 w-6 cursor-pointer" />
+          <img src={user} alt="user" className="h-6 w-6 cursor-pointer" />
       </div>
     </div>
   );

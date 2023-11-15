@@ -1,60 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ErrorBoundary from "./Components/ErrorBoundary";
-import useMediaData from "./CustomHooks/useMovieData";
 import MovieList from "./Components/MovieList";
 import SeriesList from "./Components/SeriesList";
 import TabNavigation from "./Components/TabNavigation";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { SeriesData, MovieData } from "./type";
+import themoviedb from "../src/lib/themoviedb/themoviedb.js";
 
 function App() {
   const [activeTab, setActiveTab] = useState("movies");
-
-  const apiKey =
-    process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
-
-  const getApiUrl = (tab: string) => {
-    if (tab === "movies") {
-      return `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
-    } else if (tab === "series") {
-      return `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}`;
-    } else {
-      return "";
-    }
-  };
-
-  const { mediaData} = useMediaData(getApiUrl(activeTab));
-
-  const handleTabChange = (tab: string) => {
+  const [movieData, setMovieData] = useState<MovieData[] | null>(null);
+  const [seriesData, setSeriesData] = useState<SeriesData[] | null>(null);
+  const [movieLoading, setMovieLoading] = useState(true);
+  const [seriesLoading, setSeriesLoading] = useState(true);
+  const navigate = useNavigate();
+  const handleTabChange = async (tab: string) => {
     setActiveTab(tab);
-    if (tab === "movies") {
-      <Link to="/movies"/>;
-    } else if (tab === "series") {
-      <Link to="/series"/>;
+  };
+
+  const fetchMovieData = async () => {
+    setMovieLoading(true);
+    const movieOptions = {
+      api_key: themoviedb.common.api_key,
+    };
+
+    try {
+      themoviedb.discover.getMovies(
+        movieOptions,
+        (data) => {
+          const parsedData = JSON.parse(data);
+          setMovieData(parsedData.results);
+          setMovieLoading(false);
+        },
+        (error) => {
+          console.error("Movie Data Error:", error);
+          setMovieLoading(false);
+        }
+      );
+    } catch (error) {
+      console.error("Error fetching movie data:", error);
+      setMovieLoading(false);
     }
   };
+
+  const fetchSeriesData = async () => {
+    setSeriesLoading(true);
+    const seriesOptions = {
+      api_key: themoviedb.common.api_key,
+    };
+
+    try {
+      themoviedb.discover.getTvShows(
+        seriesOptions,
+        (data) => {
+          const parsedData = JSON.parse(data);
+          setSeriesData(parsedData.results);
+          setSeriesLoading(false);
+        },
+        (error) => {
+          console.error("Series Data Error:", error);
+          setSeriesLoading(false);
+        }
+      );
+    } catch (error) {
+      console.error("Error fetching series data:", error);
+      setSeriesLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === "movies") {
+      fetchMovieData();
+      navigate("/movies");
+    } else if (activeTab === "series") {
+      fetchSeriesData();
+      navigate("/series");
+    }
+  }, [activeTab]);
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <ErrorBoundary>
-          <TabNavigation onTabChange={handleTabChange} />
-          <Routes>
-          <Route
-              path="/"
-              element={<MovieList movieData={mediaData || []} />}
-            />
-            <Route
-              path="/movies"
-              element={<MovieList movieData={mediaData || []} />}
-            />
-            <Route
-              path="/series"
-              element={<SeriesList seriesData={mediaData || []} />}
-            />
-          </Routes>
-        </ErrorBoundary>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <ErrorBoundary>
+      <TabNavigation onTabChange={handleTabChange} />
+      <Routes>
+        <Route path="/" element={<MovieList movieData={movieData} />} />
+        <Route path="/movies" element={<MovieList movieData={movieData} />} />
+        <Route
+          path="/series"
+          element={<SeriesList seriesData={seriesData} />}
+        />
+      </Routes>
+      </ErrorBoundary>
+    </div>
   );
 }
 

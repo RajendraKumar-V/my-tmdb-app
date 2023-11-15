@@ -1,44 +1,49 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { MovieData } from "../type";
+import { MovieData, MovieDetailData } from "../type";
 import "../custom.css";
 import Modal from "react-modal";
 import closeIcon from "../image/close-icon.svg";
-import { Link } from "react-router-dom";
+import themoviedb from "../../src/lib/themoviedb/themoviedb.js";
+import { AxiosResponse, AxiosError } from "axios";
 interface MovieDetailProps {
-  movie: MovieData;
+  movie: MovieDetailData;
   movieId: number;
-  setSelectedMovie:Dispatch<SetStateAction<MovieData | null>>
+  setSelectedMovie: Dispatch<SetStateAction<MovieData | null>>;
 }
 
 Modal.setAppElement("#root");
 
-function MovieDetail({ movie, movieId,setSelectedMovie }: MovieDetailProps) {
-  const [movieDetails, setMovieDetails] = useState<MovieData | null>(null);
+function MovieDetail({ movie, movieId, setSelectedMovie }: MovieDetailProps) {
   const [showModal, setShowModal] = useState(true);
-  const apiKey =
-    process.env.REACT_APP_API_KEY || "0ed9e5583ee0385087dff929f46a1b21";
-  const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
 
   useEffect(() => {
-    fetch(apiUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to fetch movie details (HTTP ${response.status})`);
-        }
-        return response.json();
-      })
-      .then((data) => setMovieDetails(data))
-      .catch((error) => {
-        if (error instanceof SyntaxError) {
-          console.error("Error fetching movie details: Invalid JSON response",error);
-        } else {
-          console.error("Error fetching movie details:", error);
-        }
-      });
-  }, [apiUrl]);
+    const fetchData = async () => {
+      try {
+        const movieDetailOptions = {
+          params: {
+            api_key: themoviedb.common.api_key,
+          },
+          onSuccess: (data: AxiosResponse<MovieDetailData[]>) => {
+            data;
+          },
+          onError: (error: AxiosError) => {
+            console.error("Movie Detail Data Error:", error);
+          },
+        };
 
+        themoviedb.movies.getById({
+          ...movieDetailOptions.params,
+          id: movieId,
+        });
+      } catch (error) {
+        console.error("Error fetching movie detail data:", error);
+      }
+    };
 
-  if (!movieDetails) {
+    fetchData();
+  }, [movieId]);
+
+  if (!movie) {
     return <p>Loading...</p>;
   }
 
@@ -49,36 +54,34 @@ function MovieDetail({ movie, movieId,setSelectedMovie }: MovieDetailProps) {
 
   return (
     <div>
-      {showModal && (
+      {showModal && movie && (
         <div className="movie-details-overlay">
           <div className="modal-content">
-            <Link to="/" className="close-button">
-              <img src={closeIcon} data-testid="Close-Modal"  alt="Close" onClick={closeModal} />
-            </Link>
+            <div className="close-button" onClick={closeModal}>
+              <img src={closeIcon} data-testid="Close-Modal" alt="Close" />
+            </div>
             <div className="flex">
               <div className="bg-custom-color rounded-lg shadow-md movie-details-image-div">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-                  alt={movieDetails.title}
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
                   className="movie-details-image"
                 />
               </div>
               <div className="movie-detail-content-div">
-                <p className="movie-detail-title">{movieDetails.title}</p>
+                <p className="movie-detail-title">{movie.title}</p>
                 <p className="movie-detail-release">
-                  Release Date: {movieDetails.release_date}
+                  Release Date: {movie.release_date}
                 </p>
                 <p className="movie-detail-description">
-                  Overview : {movieDetails.overview}
+                  Overview: {movie.overview}
                 </p>
-                <p className="movie-detail-runtime">
-                  Runtime : {movieDetails.runtime}
-                </p>
+                <p className="movie-detail-runtime">Runtime: {movie.runtime}</p>
                 <p className="movie-details-vote-avg">
-                  Vote Average: {movieDetails.vote_average}
+                  Vote Average: {movie.vote_average}
                 </p>
                 <p className="movie-details-vote-count">
-                  Vote Count: {movieDetails.vote_count}
+                  Vote Count: {movie.vote_count}
                 </p>
               </div>
             </div>
